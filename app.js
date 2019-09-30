@@ -11,7 +11,12 @@ var app = express();
 
 // add mongoose 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/ricker');
+mongoose.connect("mongodb://127.0.0.1:27017/a2z", {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
+  if(error){
+      console.log("Error occured not able to connect");
+  }
+  });
+
 
 // add cors 
 var cors = require('cors');
@@ -49,4 +54,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//server listening
+app.listen(3005, ()=> console.log("listening on port 3005"));
 module.exports = app;

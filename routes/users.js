@@ -29,7 +29,7 @@ router.post('/login', function(req,res,next){
     if(doc) {
       if(doc.isValid(req.body.password)){
           // generate token
-          let token = jwt.sign({username:doc.username},'secret', {expiresIn : '3h'});
+          let token = jwt.sign({username:doc.username},'flya2zTravel', {expiresIn : '3h'});
 
           return res.status(200).json(token);
 
