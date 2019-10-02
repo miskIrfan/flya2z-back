@@ -34,33 +34,33 @@ const cryptr = new Cryptr('myTotalySecretKey');
 
 
   
-// router.get('/view_mails', function (req, res) {
+router.get('/view_mails', function (req, res) {
 
-//   const Cryptr = require('cryptr');
-//   const cryptr = new Cryptr('myTotalySecretKey');
+  const Cryptr = require('cryptr');
+  const cryptr = new Cryptr('myTotalySecretKey');
 
-//   // find is used to retrieve data from db
-//   Subscribe.find({},{email: 1 },function (err, result) {
-//  // OwnerSchema.findOne(req.query, function (err, result) {
-//       if (err) {
-//           res.send('Failed to fetch data');
-//       }
-//       else {
-//           console.log(result);
+  // find is used to retrieve data from db
+  Subscribe.find({},{email: 1 },function (err, result) {
+ // OwnerSchema.findOne(req.query, function (err, result) {
+      if (err) {
+          res.send('Failed to fetch data');
+      }
+      else {
+          console.log(result);
          
-//           let alldata=[]
-//              result.forEach(email => {
-//           let decryptedString = cryptr.decrypt(email.email);
-//            console.log(decryptedString + "decrypted string");
-//            alldata.push(decryptedString)
-//           // console.log(result);
-//           //.json(decryptedString[0]);
-//       });
-//     res.json(alldata)
-//       }
-//   })
-//   console.log("reached get api");
-// })
+          let alldata=[]
+             result.forEach(email => {
+          let decryptedString = cryptr.decrypt(email.email);
+           console.log(decryptedString + "decrypted string");
+           alldata.push(decryptedString)
+          // console.log(result);
+          //.json(decryptedString[0]);
+      });
+    res.json(alldata)
+      }
+  })
+  console.log("reached get api");
+})
 
 
 

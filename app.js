@@ -8,12 +8,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var subscribersRouter = require('./routes/subscribers');
 
-
 var app = express();
 
 // add mongoose 
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://127.0.0.1:27017/a2z", {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
+mongoose.connect("mongodb://127.0.0.1:27017/flya2z", {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
   if(error){
       console.log("Error occured not able to connect");
   }
@@ -39,7 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/subscribe', subscribersRouter);
+app.use('/subscribers', subscribersRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
