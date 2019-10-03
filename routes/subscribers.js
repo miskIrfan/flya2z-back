@@ -4,7 +4,8 @@ var Subscribe = require('../models/subscribe');
 
 
 router.post('/subscribe',  function(req,res,next){
-    var data = new Subscribe ({
+  console.log(req.body) 
+  var data = new Subscribe ({
       email: req.body.email,
       
     });
