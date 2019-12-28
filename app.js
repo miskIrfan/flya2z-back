@@ -10,7 +10,7 @@ var subscribersRouter = require('./routes/subscribers');
 var toursRouter = require('./routes/tours');
 
 var app = express();
-
+const port = 9000;
 // add mongoose 
 var mongoose = require('mongoose');
 mongoose.connect("mongodb://127.0.0.1:27017/flya2z", {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
@@ -22,9 +22,9 @@ mongoose.connect("mongodb://127.0.0.1:27017/flya2z", {useNewUrlParser: true, use
 
 // add cors 
 var cors = require('cors');
-app.use(cors({
-  origin:'http://localhost:4200'
-}));
+app.use(cors(
+  //{origin:'http://localhost:4200'}
+  ));
 
 
 // view engine setup
@@ -35,7 +35,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/front-end/flya2z-front/dist/index.html'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -59,5 +59,19 @@ app.use(function(err, req, res, next) {
 });
 
 //server listening
-app.listen(3005, ()=> console.log("listening on port 3005"));
+//app.listen(3005, ()=> console.log("listening on port 3005"));
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/front-end/flya2z-front/dist/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+});
+
+app.listen(port, () => {
+
+  console.log('server started on port '+port);
+});
+
 module.exports = app;
