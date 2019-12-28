@@ -51,7 +51,7 @@ router.get('/view_mails', function (req, res) {
           let alldata=[]
              result.forEach(email => {
           let decryptedString = cryptr.decrypt(email.email);
-           console.log(decryptedString + "decrypted string");
+           //console.log(decryptedString + "decrypted string");
            alldata.push(decryptedString)
           // console.log(result);
           //.json(decryptedString[0]);
@@ -59,7 +59,7 @@ router.get('/view_mails', function (req, res) {
     res.json(alldata)
       }
   })
-  console.log("reached get api");
+  //console.log("reached get api");
 })
 
 
